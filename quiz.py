@@ -29,6 +29,8 @@ answer_choice = [
     ["1","2","3","4"],
 ]
 
+answers = [0,0,0,0,0,0,0,0,0,0]
+
 user_answer = []
 indexes = []
 def gen():
@@ -41,6 +43,16 @@ def gen():
             indexes.append(x)
     #print(indexes)
 
+def calc():
+    global indexes ,user_answer,answers
+    x = 0
+    score = 0
+    for i in indexes :
+        if user_answer[x] == answers[i]:
+            score = score+ 5
+        x +=1
+    print(score)
+
 ques =1
 def selected():
     global radiovar,user_answer
@@ -49,6 +61,7 @@ def selected():
     x = radiovar.get()
     #print(x) shows the selected radiobutton
     user_answer.append(x)
+    radiovar.set(-1)
     if ques < 5 :
         lblQuestion.config(text=question[indexes[ques]])
         r1['text']= answer_choice[ques][0]
@@ -57,7 +70,9 @@ def selected():
         r4['text'] = answer_choice[ques][3]
         ques += 1
     else :
-        pass
+        print('indexes')
+        print(user_answer)
+        calc()
 
 def startquiz():
     global lblQuestion,r1,r2,r3,r4
@@ -68,7 +83,7 @@ def startquiz():
         width = 500 ,
         justify = "center",
         wraplength = 400 ,
-        background = "#ffffff"
+        background = "#ffffff",
 
     )
     lblQuestion.pack(pady=(100,40))
@@ -83,9 +98,9 @@ def startquiz():
         value = 0, #
         variable = radiovar,
         command = selected,
-
+        background="#ffffff",
     )
-    r1.pack()
+    r1.pack(pady=5)
 
     r2 = Radiobutton(
         root,
@@ -94,8 +109,9 @@ def startquiz():
         value=1,
         variable=radiovar,
         command=selected,
+        background="#ffffff",
     )
-    r2.pack()
+    r2.pack(pady=5)
 
     r3 = Radiobutton(
         root,
@@ -104,8 +120,9 @@ def startquiz():
         value=2,
         variable=radiovar,
         command=selected,
+        background="#ffffff",
     )
-    r3.pack()
+    r3.pack(pady=5)
     r4 = Radiobutton(
         root,
         text=answer_choice[indexes[0]][3],
@@ -113,8 +130,9 @@ def startquiz():
         value=3,
         variable=radiovar,
         command=selected,
+        background="#ffffff",
     )
-    r4.pack()
+    r4.pack(pady=5)
 
 
 def startispressed():
@@ -141,7 +159,10 @@ root.config(background='#ffffff')
 
 #putting the image in the root window
 img1 =ImageTk.PhotoImage(Image.open("gradhat.jpg"))
-label_img = Label(root,image= img1)
+label_img = Label(root,
+                  image= img1,
+                  background = ("#000000")
+)
 label_img.pack(pady=(40,0))
 
 #creating the label text
@@ -149,6 +170,7 @@ label_text = Label(
     root,
     text = "Quizstar",
     font = ("Comic sans MS",24,"bold"),
+    background = ("#ffffff")
 
 )
 label_text.pack(pady =(0,40))
@@ -161,7 +183,7 @@ btn_start = Button(
     image = img2,
     relief = "flat",
     border = 0,
-    #background ="#ffffff",
+    background ="#ffffff",
     height=60,
     width = 180,
     command = startispressed,
@@ -172,7 +194,7 @@ btn_start.pack()
 lbl_instruction = Label(
     root,
     text = "Read the Rules and\n click start once your are ready",
-    #background = "#ffffff",
+    background = "#ffffff",
      font = ("consolas",14),
     justify = "center"
 )
