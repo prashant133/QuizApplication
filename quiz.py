@@ -43,6 +43,41 @@ def gen():
             indexes.append(x)
     #print(indexes)
 
+def showresult(score):
+    lblQuestion.destroy()
+    r1.destroy()
+    r2.destroy()
+    r3.destroy()
+    r4.destroy()
+    labelimage = Label(
+        root,
+        background = '#ffffff',
+        border = 0
+
+ )
+    labelimage.pack(pady=(50,20))
+    labelresulttext = Label(
+        root,
+        font = ("consolas",20),
+        background='#ffffff'
+)
+    labelresulttext.pack()
+    if score >=20:
+        img = ImageTk.PhotoImage(Image.open("great.png"))
+        labelimage.config(image=img)
+        labelimage.image = img
+        labelresulttext.config(text = "YOU ARE EXCELLENT")
+
+    elif (score >10 and score < 20):
+        img = ImageTk.PhotoImage(Image.open("good.png"))
+        labelimage.config(image=img)
+        labelimage.image = img
+        labelresulttext.config(text="YOU ARE GOOD")
+    else:
+        img = ImageTk.PhotoImage(Image.open("sad.png"))
+        labelimage.config(image=img)
+        labelimage.image = img
+        labelresulttext.config(text="BETTER LUCK NEXT TIME")
 def calc():
     global indexes ,user_answer,answers
     x = 0
@@ -52,7 +87,7 @@ def calc():
             score = score+ 5
         x +=1
     print(score)
-
+    showresult(score)
 ques =1
 def selected():
     global radiovar,user_answer
