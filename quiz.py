@@ -189,6 +189,9 @@ root.title("Quizstar")
 root.geometry("700x600")
 root.resizable(0,0)
 
+#giving the image for the window
+root.iconbitmap('quiz.ico')
+
 #applying the color for the background
 root.config(background='#ffffff')
 
