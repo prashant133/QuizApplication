@@ -63,18 +63,18 @@ def showresult(score):
 )
     labelresulttext.pack()
     if score >=20:
-        img = ImageTk.PhotoImage(Image.open("great.png"))
+        img = ImageTk.PhotoImage(Image.open("Image/great.png"))
         labelimage.config(image=img)
         labelimage.image = img
         labelresulttext.config(text = "YOU ARE EXCELLENT")
 
     elif (score >10 and score < 20):
-        img = ImageTk.PhotoImage(Image.open("good.png"))
+        img = ImageTk.PhotoImage(Image.open("Image/good.png"))
         labelimage.config(image=img)
         labelimage.image = img
         labelresulttext.config(text="YOU ARE GOOD")
     else:
-        img = ImageTk.PhotoImage(Image.open("sad.png"))
+        img = ImageTk.PhotoImage(Image.open("Image/sad.png"))
         labelimage.config(image=img)
         labelimage.image = img
         labelresulttext.config(text="BETTER LUCK NEXT TIME")
@@ -190,13 +190,13 @@ root.geometry("700x600")
 root.resizable(0,0)
 
 #giving the image for the window
-root.iconbitmap('quiz.ico')
+root.iconbitmap('Image/quiz.ico')
 
 #applying the color for the background
 root.config(background='#ffffff')
 
 #putting the image in the root window
-img1 =ImageTk.PhotoImage(Image.open("gradhat.jpg"))
+img1 =ImageTk.PhotoImage(Image.open("Image/gradhat.jpg"))
 label_img = Label(root,
                   image= img1,
                   background = ("#000000")
@@ -214,7 +214,7 @@ label_text = Label(
 label_text.pack(pady =(0,40))
 
 #putting the image for the button
-img2 = ImageTk.PhotoImage(Image.open("start.jpg"))
+img2 = ImageTk.PhotoImage(Image.open("Image/start.jpg"))
 
 btn_start = Button(
     root,
