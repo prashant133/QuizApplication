@@ -1,48 +1,51 @@
 import tkinter
 from tkinter import *
-from PIL import ImageTk , Image
+from PIL import ImageTk, Image
 import random
+
+
 def start():
+    global ques
+    ques = 1
     question = [
-        "this is sample question 1 ?",
-        "this is sample question 2 ?",
-        "this is sample question 3 ?",
-        "this is sample question 4 ?",
-        "this is sample question 5 ?",
-        "this is sample question 6 ?",
-        "this is sample question 7 ?",
-        "this is sample question 8 ?",
-        "this is sample question 9 ?",
-        "this is sample question 10 ?",
+        "How do you write COMMENTS in python code?",
+        "Which one is NOT a legal variable name?",
+        "How do you create a variable with the numeric value 5?",
+        "What is the correct file extension for Python files?",
+        "How do your create variable with floating number 2.8 ?",
+        "What is the correct syntax to output the type of a variable or object in Python ?",
+        "What is the correct way to create a function in Python? ?",
+        "Which method can be used to remove any whitespace from both the beginning and the end of a string? ?",
+        "Which method can be used to return a string in upper case letters?",
+        "Which method can be used to replace parts of a string? ?",
     ]
 
     answer_choice = [
-        ["1","2","3","4"],
-        ["1","2","3","4"],
-        ["1","2","3","4"],
-        ["1","2","3","4"],
-        ["1","2","3","4"],
-        ["1","2","3","4"],
-        ["1","2","3","4"],
-        ["1","2","3","4"],
-        ["1","2","3","4"],
-        ["1","2","3","4"],
-        ["1","2","3","4"],
+        ["#This is comment", "/*This is comment*/", "//This is a comment", "//This is a comment//"],#1
+        ["Myvar", "_myvar", "my-var", "my_var"],#2
+        ["x=5", "x=int(5)", "Both a and b ", "None"],#3
+        [".pyth", ".pyt", ".pt", ".py"],#4
+        ["x=float(2.8)", "x=2.8", "Both a and b ", "None"],#5
+        ["print(typeof(x))", "print(type(x))", "print(typeof x)", "print(typeOf(x))"],#6
+        ["function myfunction():", "create myFunction():", "DEF myFunction():  ", "def myFunction():  "],#7
+        ["strip()  ", "trim()", "len()", "ptrim()"],#8
+        ["upperCase()", "upper()  ", "uppercase()", "toUpperCase()"],#9
+        ["replaceString()", "switch()", "repl()", "replace()  "],#10
     ]
 
-    answers = [0,0,0,0,0,0,0,0,0,0]
+    answers = [0, 2, 2, 3, 2, 1, 3, 0, 1, 3]
 
     user_answer = []
     indexes = []
+
     def gen():
-        global indexes
-        while(len(indexes)<5):
-            x = random.randint(0,9)
-            if x in indexes :
+
+        while (len(indexes) < 5):
+            x = random.randint(0, 9)
+            if x in indexes:
                 continue
-            else :
+            else:
                 indexes.append(x)
-        #print(indexes)
 
     def showresult(score):
         lblQuestion.destroy()
@@ -52,89 +55,98 @@ def start():
         r4.destroy()
         labelimage = Label(
             root,
-            background = '#ffffff',
-            border = 0
+            background='#ffffff',
+            border=0
 
-     )
-        labelimage.pack(pady=(50,20))
+        )
+        labelimage.pack(pady=(50, 20))
         labelresulttext = Label(
             root,
-            font = ("consolas",20),
+            font=("consolas", 20),
             background='#ffffff'
-    )
+        )
         labelresulttext.pack()
-        if score >=20:
+        if score >= 20:
             img = ImageTk.PhotoImage(Image.open("Image/great.png"))
             labelimage.config(image=img)
             labelimage.image = img
-            labelresulttext.config(text = "YOU ARE EXCELLENT")
+            labelresulttext.config(text=f"YOU ARE EXCELLENT,your score is {score}")
 
-        elif (score >10 and score < 20):
+
+        elif (score > 10 and score < 20):
             img = ImageTk.PhotoImage(Image.open("Image/good.png"))
             labelimage.config(image=img)
             labelimage.image = img
-            labelresulttext.config(text="YOU ARE GOOD")
+            labelresulttext.config(text=f"YOU ARE GOOD,your score is {score}")
         else:
             img = ImageTk.PhotoImage(Image.open("Image/sad.png"))
             labelimage.config(image=img)
             labelimage.image = img
-            labelresulttext.config(text="BETTER LUCK NEXT TIME")
+            labelresulttext.config(text=f"BETTER LUCK NEXT TIME,your score is {score}")
+
     def calc():
-        global indexes ,user_answer,answers
+
         x = 0
         score = 0
-        for i in indexes :
+        for i in indexes:
             if user_answer[x] == answers[i]:
-                score = score+ 5
-            x +=1
+                score = score + 5
+            x += 1
         print(score)
         showresult(score)
-    ques =1
+
+
+
     def selected():
-        global radiovar,user_answer
-        global lblQuestion,r1,r2,r3,r4
-        global ques
+        global radiovar, ques
+        global lblQuestion, r1, r2, r3, r4
+
         x = radiovar.get()
-        #print(x) shows the selected radiobutton
+        # print(x) shows the selected radiobutton
         user_answer.append(x)
         radiovar.set(-1)
-        if ques < 5 :
+        if ques < 5:
             lblQuestion.config(text=question[indexes[ques]])
-            r1['text']= answer_choice[ques][0]
-            r2['text'] = answer_choice[ques][1]
-            r3['text'] = answer_choice[ques][2]
-            r4['text'] = answer_choice[ques][3]
+            r1['text'] = answer_choice[indexes[ques]][0]
+            r2['text'] = answer_choice[indexes[ques]][1]
+            r3['text'] = answer_choice[indexes[ques]][2]
+            r4['text'] = answer_choice[indexes[ques]][3]
             ques += 1
-        else :
-            print('indexes')
-            print(user_answer)
+        else:
+            # print('indexes')
+            # print(user_answer)
             calc()
 
     def startquiz():
-        global lblQuestion,r1,r2,r3,r4
+        global lblQuestion, r1, r2, r3, r4,img
+        #img = ImageTk.PhotoImage(Image.open("Image/quizbg.jpg"))
+
+        #labl = Label(root, image=img)
+        #labl.pack()
+
         lblQuestion = Label(
             root,
-            text = question[indexes[0]],
-            font = ('consolas',16),
-            width = 500 ,
-            justify = "center",
-            wraplength = 400 ,
-            background = "#ffffff",
+            text=question[indexes[0]],
+            font=('consolas', 16),
+            width=500,
+            justify="center",
+            wraplength=400,
+            background="lightblue",
 
         )
-        lblQuestion.pack(pady=(100,40))
+        lblQuestion.pack(pady=(100, 40))
         global radiovar
         radiovar = IntVar()
-        radiovar.set(-1) #defult value which will not check the button at first
+        radiovar.set(-1)  # defult value which will not check the button at first
 
         r1 = Radiobutton(
             root,
-            text = answer_choice[indexes[0]][0],
-            font = ('Times',12),
-            value = 0, #
-            variable = radiovar,
-            command = selected,
-            background="#ffffff",
+            text=answer_choice[indexes[0]][0],
+            font=('Times', 12),
+            value=0,  #
+            variable=radiovar,
+            command=selected,
+            background="lightblue",
         )
         r1.pack(pady=5)
 
@@ -145,7 +157,7 @@ def start():
             value=1,
             variable=radiovar,
             command=selected,
-            background="#ffffff",
+            background="lightblue",
         )
         r2.pack(pady=5)
 
@@ -156,7 +168,7 @@ def start():
             value=2,
             variable=radiovar,
             command=selected,
-            background="#ffffff",
+            background="lightblue",
         )
         r3.pack(pady=5)
         r4 = Radiobutton(
@@ -166,10 +178,9 @@ def start():
             value=3,
             variable=radiovar,
             command=selected,
-            background="#ffffff",
+            background="lightblue",
         )
         r4.pack(pady=5)
-
 
     def startispressed():
         label_img.destroy()
@@ -177,80 +188,78 @@ def start():
         lblrules.destroy()
         lbl_instruction.destroy()
         btn_start.destroy()
+        root.config(bg='lightblue')
         gen()
         startquiz()
 
-    #creating the root window
+    # creating the root window
     root = Tk()
 
-    #giving the title for the project
+    # giving the title for the project
     root.title("Quizstar")
 
-    #setting the geometry for the rootwindow
+    # setting the geometry for the rootwindow
     root.geometry("700x600")
-    root.resizable(0,0)
+    root.resizable(0, 0)
 
-    #giving the image for the window
+    # giving the image for the window
     root.iconbitmap('Image/quiz.ico')
 
-    #applying the color for the background
+    # applying the color for the background
     root.config(background='#ffffff')
 
-    #putting the image in the root window
-    img1 =ImageTk.PhotoImage(Image.open("Image/gradhat.jpg"))
+    # putting the image in the root window
+    img1 = ImageTk.PhotoImage(Image.open("Image/gradhat.jpg"))
     label_img = Label(root,
-                      image= img1,
-                      background = ("#000000")
-    )
-    label_img.pack(pady=(40,0))
+                      image=img1,
+                      background=("#000000")
+                      )
+    label_img.pack(pady=(40, 0))
 
-    #creating the label text
+    # creating the label text
     label_text = Label(
         root,
-        text = "Quizstar",
-        font = ("Comic sans MS",24,"bold"),
-        background = ("#ffffff")
+        text="Quizstar",
+        font=("Comic sans MS", 24, "bold"),
+        background=("#ffffff")
 
     )
-    label_text.pack(pady =(0,40))
+    label_text.pack(pady=(0, 40))
 
-    #putting the image for the button
+    # putting the image for the button
     img2 = ImageTk.PhotoImage(Image.open("Image/start.jpg"))
 
     btn_start = Button(
         root,
-        image = img2,
-        relief = "flat",
-        border = 0,
-        background ="#ffffff",
+        image=img2,
+        relief="flat",
+        border=0,
+        background="#ffffff",
         height=60,
-        width = 180,
-        command = startispressed,
+        width=180,
+        command=startispressed,
     )
     btn_start.pack()
 
-    #creating the label for text
+    # creating the label for text
     lbl_instruction = Label(
         root,
-        text = "Read the Rules and\n click start once your are ready",
-        background = "#ffffff",
-         font = ("consolas",14),
-        justify = "center"
+        text="Read the Rules and\n click start once your are ready",
+        background="#ffffff",
+        font=("consolas", 14),
+        justify="center"
     )
-    lbl_instruction.pack(pady=(10,120))
+    lbl_instruction.pack(pady=(10, 120))
 
-    #creating label for the rules
+    # creating label for the rules
     lblrules = Label(
         root,
-        text="this quiz contain a question\nyou will get 20 sec",
-        width= 100,
-        font = ("Times",14),
-        background = "#000000",
-        foreground = "#FACA2F",
+        text="This quiz contain five question\n",
+        width=100,
+        font=("Times", 14),
+        background="#000000",
+        foreground="#FACA2F",
     )
     lblrules.pack()
-
-
-
 
     mainloop()
