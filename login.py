@@ -28,7 +28,7 @@ def login():
             root.destroy()
             start()
         else :
-            tkinter.messagebox.showinfo("Invalid Deatils", "Ivalid username or Password")
+            tkinter.messagebox.showinfo("Invalid Deatils", "Invalid username or Password")
 root = Tk()
 root.geometry('400x400')
 root.title('Login')

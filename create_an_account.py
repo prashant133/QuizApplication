@@ -7,8 +7,9 @@ def reg():
     root = tkinter.Toplevel()
     root.geometry('800x363')
     root.title('create an account')
-    root.resizable(0,0)
     root.iconbitmap('Image/key.ico')
+    root.resizable(0,0)
+
 
     image1 = ImageTk.PhotoImage(Image.open("Image/laptop.png"))
     root.config(bg='lightblue')
@@ -119,6 +120,7 @@ def reg():
 
 
             #creating Table
+            '''
             cursor.execute("""Create Table Information(
             firstname text,
             lastname text,
@@ -128,7 +130,7 @@ def reg():
             )""")
     
             database.commit()
-
+            '''
             #inserting data into the table
             cursor.execute("Insert Into Information Values(:firstname,:lastname,:email,:password,:confirmpassword)",
                            {

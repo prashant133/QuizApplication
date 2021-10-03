@@ -1,4 +1,4 @@
-import tkinter
+
 from tkinter import *
 from PIL import ImageTk, Image
 import random
@@ -21,16 +21,16 @@ def start():
     ]
 
     answer_choice = [
-        ["#This is comment", "/*This is comment*/", "//This is a comment", "//This is a comment//"],#1
-        ["Myvar", "_myvar", "my-var", "my_var"],#2
-        ["x=5", "x=int(5)", "Both a and b ", "None"],#3
-        [".pyth", ".pyt", ".pt", ".py"],#4
-        ["x=float(2.8)", "x=2.8", "Both a and b ", "None"],#5
-        ["print(typeof(x))", "print(type(x))", "print(typeof x)", "print(typeOf(x))"],#6
-        ["function myfunction():", "create myFunction():", "DEF myFunction():  ", "def myFunction():  "],#7
-        ["strip()  ", "trim()", "len()", "ptrim()"],#8
-        ["upperCase()", "upper()  ", "uppercase()", "toUpperCase()"],#9
-        ["replaceString()", "switch()", "repl()", "replace()  "],#10
+        ["#This is comment", "/*This is comment*/", "//This is a comment", "//This is a comment//"],
+        ["Myvar", "_myvar", "my-var", "my_var"],
+        ["x=5", "x=int(5)", "Both a and b ", "None"],
+        [".pyth", ".pyt", ".pt", ".py"],
+        ["x=float(2.8)", "x=2.8", "Both a and b ", "None"],
+        ["print(typeof(x))", "print(type(x))", "print(typeof x)", "print(typeOf(x))"],
+        ["function myfunction():", "create myFunction():", "DEF myFunction():  ", "def myFunction():  "],
+        ["strip()  ", "trim()", "len()", "ptrim()"],
+        ["upperCase()", "upper()  ", "uppercase()", "toUpperCase()"],
+        ["replaceString()", "switch()", "repl()", "replace()  "],
     ]
 
     answers = [0, 2, 2, 3, 2, 1, 3, 0, 1, 3]
@@ -68,21 +68,21 @@ def start():
         labelresulttext.pack()
         if score >= 20:
             img = ImageTk.PhotoImage(Image.open("Image/great.png"))
-            labelimage.config(image=img)
+            labelimage.config(image=img,bg="lightblue")
             labelimage.image = img
-            labelresulttext.config(text=f"YOU ARE EXCELLENT,your score is {score}")
+            labelresulttext.config(text=f"YOU ARE EXCELLENT,your score is {score}",bg='lightblue')
 
 
         elif (score > 10 and score < 20):
             img = ImageTk.PhotoImage(Image.open("Image/good.png"))
-            labelimage.config(image=img)
+            labelimage.config(image=img,bg="lightblue")
             labelimage.image = img
-            labelresulttext.config(text=f"YOU ARE GOOD,your score is {score}")
+            labelresulttext.config(text=f"YOU ARE GOOD,your score is {score}",bg='lightblue')
         else:
             img = ImageTk.PhotoImage(Image.open("Image/sad.png"))
-            labelimage.config(image=img)
+            labelimage.config(image=img,bg='lightblue')
             labelimage.image = img
-            labelresulttext.config(text=f"BETTER LUCK NEXT TIME,your score is {score}")
+            labelresulttext.config(text=f"BETTER LUCK NEXT TIME,your score is {score}",bg='lightblue')
 
     def calc():
 
@@ -92,7 +92,7 @@ def start():
             if user_answer[x] == answers[i]:
                 score = score + 5
             x += 1
-        print(score)
+        #print(score)
         showresult(score)
 
 
