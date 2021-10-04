@@ -1,6 +1,6 @@
 ![Screenshot (80)](https://user-images.githubusercontent.com/84699301/135825028-d5ebc818-574d-4bb6-aacd-ddb093146bef.png)
 ## Introduction
-Learning should be an enjoyable, social experience, so this quiz helps you to be much productive and it is much enjoyable than reading the regular book.This quiz application help you to test your knowldege to the peak point.It can be used in schools,colleges and many more.
+Learning should be an enjoyable, social experience, so this quiz will help to be much productive and it is much enjoyable than reading the regular book.This quiz application will help you to test your knowldege to your best.It can be used in schools,colleges and many more.
 ## Aim
 To make the reading enjoyable and productive.
 # Features
