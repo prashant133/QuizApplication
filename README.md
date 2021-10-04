@@ -12,5 +12,5 @@ To make the reading enjoyable and productive.
 ![Screenshot (78)](https://user-images.githubusercontent.com/84699301/135827042-2004076e-a74b-47e1-8a65-533f1909723d.png)
 ![Screenshot (77)](https://user-images.githubusercontent.com/84699301/135827090-19777811-dcbc-48f1-a9e2-2ac85d2bbc35.png)
 
-# Subimitted by:
+# Submitted by:
 * Prashant Deshar[210225]
